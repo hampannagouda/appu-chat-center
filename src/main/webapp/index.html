@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Appu Chat Center Kalaburgi</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#fafafa;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+background:#ff4d4d;
+color:white;
+}
+
+nav a{
+margin-left:20px;
+text-decoration:none;
+color:white;
+font-weight:bold;
+}
+
+/* HERO */
+
+.hero{
+height:80vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+url("https://images.unsplash.com/photo-1604908176997-43118a3fbc70");
+background-size:cover;
+color:white;
+}
+
+.hero h1{
+font-size:50px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:20px;
+margin-bottom:20px;
+}
+
+.btn{
+background:white;
+color:#ff4d4d;
+padding:12px 25px;
+text-decoration:none;
+border-radius:5px;
+font-weight:bold;
+}
+
+/* MENU */
+
+.menu{
+padding:60px;
+text-align:center;
+}
+
+.menu h2{
+margin-bottom:40px;
+}
+
+.menu-container{
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+}
+
+.card{
+background:white;
+padding:20px;
+width:220px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card img{
+width:100%;
+border-radius:10px;
+}
+
+.card h3{
+margin-top:10px;
+}
+
+/* ABOUT */
+
+.about{
+padding:60px;
+background:white;
+text-align:center;
+}
+
+/* CONTACT */
+
+.contact{
+padding:60px;
+text-align:center;
+}
+
+/* FOOTER */
+
+footer{
+background:#222;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+header{
+flex-direction:column;
+}
+
+nav{
+margin-top:10px;
+}
+
+.hero h1{
+font-size:35px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2>Appu Chat Center</h2>
+
+<nav>
+
+<a href="#">Home</a>
+<a href="#menu">Menu</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+
+</nav>
+
+</header>
+
+
+<section class="hero">
+
+<h1>Best Chat in Kalaburgi</h1>
+
+<p>Fresh • Spicy • Delicious Street Food</p>
+
+<a class="btn"
+href="https://maps.app.goo.gl/SDMgecme9bzmXDoV8"
+target="_blank">
+📍 Get Directions
+</a>
+
+</section>
+
+
+<section id="menu" class="menu">
+
+<h2>Popular Items</h2>
+
+<div class="menu-container">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1601050690597-df0568f70950">
+<h3>Pani Puri</h3>
+<p>₹30</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7">
+<h3>Bhel Puri</h3>
+<p>₹40</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1604908554027-6a76e9e6a832">
+<h3>Samosa Chat</h3>
+<p>₹35</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1589308078054-832ad7f7f4c4">
+<h3>Dahi Puri</h3>
+<p>₹40</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="about" class="about">
+
+<h2>About Us</h2>
+
+<p>
+
+Welcome to Appu Chat Center Kalaburgi.  
+We serve fresh, spicy and delicious street food made with authentic taste.  
+Visit us for the best pani puri, bhel puri and chaat in town.
+
+</p>
+
+</section>
+
+
+<section id="contact" class="contact">
+
+<h2>Contact Us</h2>
+
+<p>📍 Kalaburgi, Karnataka</p>
+
+<p>
+<a href="https://maps.app.goo.gl/SDMgecme9bzmXDoV8" target="_blank">
+Open in Google Maps
+</a>
+</p>
+
+<p>📞 Phone: +91 80732 76645</p>
+
+</section>
+
+
+<footer>
+
+<p>© 2026 Appu Chat Center Kalaburgi</p>
+
+</footer>
+
+
+<script>
+
+console.log("Welcome to Appu Chat Center Website")
+
+</script>
+
+</body>
+</html>
