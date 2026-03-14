@@ -1,275 +1,1690 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appu Chat's Center | Best Chaat in Kalaburagi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --neon: #00d4ff;
+            --neon2: #0ea5e9;
+            --neon3: #38bdf8;
+            --glow: 0 0 10px #00d4ff, 0 0 30px #00d4ff55, 0 0 60px #00d4ff22;
+            --glow-sm: 0 0 6px #00d4ff, 0 0 15px #00d4ff44;
+            --bg: #020508;
+            --card-bg: #060d14;
+            --border: #00d4ff33;
+            --font-head: 'Bebas Neue', sans-serif;
+            --font-body: 'Exo 2', sans-serif;
+        }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<title>Appu Chat Center Kalaburgi</title>
+        html {
+            scroll-behavior: smooth;
+        }
 
-<style>
+        body {
+            background: var(--bg);
+            color: #e0f4ff;
+            font-family: var(--font-body);
+            overflow-x: hidden;
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
-}
+        /* ─── NOISE OVERLAY ─── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: .3;
+        }
 
-body{
-background:#fafafa;
-}
+        /* ─── SCROLLBAR ─── */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
 
-/* HEADER */
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
 
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 60px;
-background:#ff4d4d;
-color:white;
-}
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon);
+            border-radius: 2px;
+        }
 
-nav a{
-margin-left:20px;
-text-decoration:none;
-color:white;
-font-weight:bold;
-}
+        /* ─── HEADER ─── */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 60px;
+            background: rgba(2, 5, 8, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown .6s ease;
+        }
 
-/* HERO */
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0
+            }
 
-.hero{
-height:80vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
-url("https://images.unsplash.com/photo-1604908176997-43118a3fbc70");
-background-size:cover;
-color:white;
-}
+            to {
+                transform: translateY(0);
+                opacity: 1
+            }
+        }
 
-.hero h1{
-font-size:50px;
-margin-bottom:10px;
-}
+        .logo {
+            font-family: var(--font-head);
+            font-size: 28px;
+            color: var(--neon);
+            text-shadow: var(--glow-sm);
+            letter-spacing: 2px;
+        }
 
-.hero p{
-font-size:20px;
-margin-bottom:20px;
-}
+        .logo span {
+            color: #fff;
+        }
 
-.btn{
-background:white;
-color:#ff4d4d;
-padding:12px 25px;
-text-decoration:none;
-border-radius:5px;
-font-weight:bold;
-}
+        nav a {
+            color: #90cfe8;
+            margin-left: 28px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: .3s;
+            position: relative;
+        }
 
-/* MENU */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--neon);
+            transform: scaleX(0);
+            transition: .3s;
+        }
 
-.menu{
-padding:60px;
-text-align:center;
-}
+        nav a:hover {
+            color: var(--neon);
+            text-shadow: var(--glow-sm);
+        }
 
-.menu h2{
-margin-bottom:40px;
-}
+        nav a:hover::after {
+            transform: scaleX(1);
+        }
 
-.menu-container{
-display:flex;
-justify-content:center;
-gap:30px;
-flex-wrap:wrap;
-}
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 40px 20px;
+        }
 
-.card{
-background:white;
-padding:20px;
-width:220px;
-border-radius:10px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-transition:0.3s;
-}
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: linear-gradient(135deg, #020508 0%, #041020 50%, #020508 100%);
+        }
 
-.card:hover{
-transform:translateY(-5px);
-}
+        /* animated grid */
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridMove 20s linear infinite;
+            opacity: .4;
+        }
 
-.card img{
-width:100%;
-border-radius:10px;
-}
+        @keyframes gridMove {
+            from {
+                transform: translateY(0)
+            }
 
-.card h3{
-margin-top:10px;
-}
+            to {
+                transform: translateY(60px)
+            }
+        }
 
-/* ABOUT */
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 50%, #001a2e55, transparent);
+        }
 
-.about{
-padding:60px;
-background:white;
-text-align:center;
-}
+        /* floating orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 1;
+        }
 
-/* CONTACT */
+        .orb1 {
+            width: 400px;
+            height: 400px;
+            background: #00d4ff18;
+            top: -100px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
 
-.contact{
-padding:60px;
-text-align:center;
-}
+        .orb2 {
+            width: 300px;
+            height: 300px;
+            background: #0ea5e920;
+            bottom: -80px;
+            right: -80px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
 
-/* FOOTER */
+        .orb3 {
+            width: 200px;
+            height: 200px;
+            background: #38bdf815;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
 
-footer{
-background:#222;
-color:white;
-text-align:center;
-padding:20px;
-}
+        @keyframes float {
 
-/* MOBILE */
+            0%,
+            100% {
+                transform: translate(0, 0)
+            }
 
-@media(max-width:768px){
+            50% {
+                transform: translate(30px, -30px)
+            }
+        }
 
-header{
-flex-direction:column;
-}
+        @keyframes pulse {
 
-nav{
-margin-top:10px;
-}
+            0%,
+            100% {
+                opacity: .5;
+                transform: translate(-50%, -50%) scale(1)
+            }
 
-.hero h1{
-font-size:35px;
-}
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.3)
+            }
+        }
 
-}
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
 
-</style>
+        .hero-badge {
+            display: inline-block;
+            border: 1px solid var(--neon);
+            color: var(--neon);
+            padding: 6px 20px;
+            border-radius: 30px;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            animation: fadeUp .8s ease .2s both;
+            box-shadow: var(--glow-sm);
+        }
 
+        .hero h1 {
+            font-family: var(--font-head);
+            font-size: clamp(52px, 10vw, 100px);
+            line-height: 1;
+            color: #fff;
+            letter-spacing: 3px;
+            animation: fadeUp .8s ease .4s both;
+        }
+
+        .hero h1 span {
+            color: var(--neon);
+            text-shadow: var(--glow);
+            display: block;
+        }
+
+        .hero-sub {
+            margin-top: 18px;
+            font-size: 18px;
+            color: #7db8d0;
+            letter-spacing: 2px;
+            animation: fadeUp .8s ease .6s both;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 36px;
+            flex-wrap: wrap;
+            animation: fadeUp .8s ease .8s both;
+        }
+
+        .btn-primary {
+            padding: 14px 32px;
+            background: var(--neon);
+            color: #020508;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: .3s;
+            box-shadow: 0 0 20px #00d4ff44;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #38bdf8;
+            box-shadow: 0 0 40px #00d4ff88;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            padding: 14px 32px;
+            background: transparent;
+            color: var(--neon);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            border: 1px solid var(--neon);
+            transition: .3s;
+        }
+
+        .btn-secondary:hover {
+            background: #00d4ff15;
+            box-shadow: var(--glow-sm);
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp {
+            padding: 14px 32px;
+            background: #25D366;
+            color: #fff;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: .3s;
+            box-shadow: 0 0 20px #25D36644;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1aaa50;
+            transform: translateY(-2px);
+        }
+
+        /* scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            z-index: 2;
+            animation: fadeIn 1s ease 1.5s both;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(var(--neon), transparent);
+            animation: scrollAnim 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollAnim {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scaleY(1)
+            }
+
+            50% {
+                opacity: .4;
+                transform: scaleY(.5)
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        /* ─── SECTIONS ─── */
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-label {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--neon);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            height: 1px;
+            width: 40px;
+            background: var(--neon);
+            opacity: .5;
+        }
+
+        .section-title {
+            font-family: var(--font-head);
+            font-size: clamp(36px, 6vw, 60px);
+            color: #fff;
+            letter-spacing: 2px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .section-title span {
+            color: var(--neon);
+            text-shadow: var(--glow-sm);
+        }
+
+        /* ─── STATS STRIP ─── */
+        .stats {
+            background: linear-gradient(90deg, #00d4ff08, #00d4ff15, #00d4ff08);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 40px 8%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+            gap: 20px;
+        }
+
+        .stat-num {
+            font-family: var(--font-head);
+            font-size: 48px;
+            color: var(--neon);
+            text-shadow: var(--glow-sm);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: #7db8d0;
+            margin-top: 6px;
+            text-transform: uppercase;
+        }
+
+        /* ─── MENU ─── */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 28px;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            transition: transform .4s cubic-bezier(.175, .885, .32, 1.275), box-shadow .4s;
+            cursor: pointer;
+        }
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #00d4ff08, transparent);
+            opacity: 0;
+            transition: .4s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 60px #00d4ff22, 0 0 0 1px #00d4ff44;
+        }
+
+        .menu-card:hover::before {
+            opacity: 1;
+        }
+
+        .menu-card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform .6s;
+        }
+
+        .menu-card:hover .menu-card-img {
+            transform: scale(1.08);
+        }
+
+        .menu-card-body {
+            padding: 20px;
+        }
+
+        .menu-card-name {
+            font-family: var(--font-head);
+            font-size: 24px;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .menu-card-desc {
+            font-size: 13px;
+            color: #7db8d0;
+            margin: 6px 0 14px;
+            line-height: 1.6;
+        }
+
+        .menu-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-card-price {
+            font-family: var(--font-head);
+            font-size: 28px;
+            color: var(--neon);
+            text-shadow: var(--glow-sm);
+        }
+
+        .menu-tag {
+            background: #00d4ff15;
+            border: 1px solid var(--border);
+            color: var(--neon);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        /* order btn on card */
+        .menu-order-btn {
+            display: block;
+            width: 100%;
+            margin-top: 14px;
+            padding: 10px;
+            background: transparent;
+            border: 1px solid var(--neon);
+            color: var(--neon);
+            border-radius: 6px;
+            font-family: var(--font-body);
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            text-align: center;
+            transition: .3s;
+        }
+
+        .menu-order-btn:hover {
+            background: var(--neon);
+            color: #020508;
+            font-weight: 700;
+            box-shadow: var(--glow-sm);
+        }
+
+        /* ─── GALLERY ─── */
+        .gallery-section {
+            background: #030a10;
+        }
+
+        .gallery-masonry {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto;
+            gap: 16px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            position: relative;
+            cursor: pointer;
+            transition: .4s;
+        }
+
+        .gallery-item:nth-child(1) {
+            grid-column: 1/3;
+        }
+
+        .gallery-item:nth-child(4) {
+            grid-column: 2/4;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--neon);
+            box-shadow: var(--glow-sm);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+            object-fit: cover;
+            transition: transform .6s;
+            display: block;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(transparent 50%, #020508cc);
+            opacity: 0;
+            transition: .3s;
+            display: flex;
+            align-items: flex-end;
+            padding: 16px;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay span {
+            color: var(--neon);
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ─── ABOUT ─── */
+        .about-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-img-wrap {
+            position: relative;
+        }
+
+        .about-img-wrap img {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .about-img-wrap::before {
+            content: '';
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            right: -16px;
+            bottom: -16px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            z-index: -1;
+        }
+
+        .about-text .section-title {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .about-text .section-label {
+            justify-content: flex-start;
+        }
+
+        .about-text p {
+            color: #90b8cc;
+            line-height: 1.9;
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #00d4ff08;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 13px;
+            transition: .3s;
+        }
+
+        .feature-item:hover {
+            border-color: var(--neon);
+            box-shadow: var(--glow-sm);
+        }
+
+        .feature-icon {
+            font-size: 20px;
+        }
+
+        /* ─── REVIEWS ─── */
+        .reviews-section {
+            background: #030a10;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .review-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            position: relative;
+            transition: .3s;
+        }
+
+        .review-card:hover {
+            border-color: var(--neon);
+            box-shadow: 0 0 30px #00d4ff15;
+            transform: translateY(-4px);
+        }
+
+        .review-card::before {
+            content: '"';
+            position: absolute;
+            top: 16px;
+            right: 24px;
+            font-family: var(--font-head);
+            font-size: 80px;
+            color: var(--neon);
+            opacity: .15;
+            line-height: 1;
+        }
+
+        .stars {
+            color: #fbbf24;
+            font-size: 18px;
+            margin-bottom: 14px;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            color: #90b8cc;
+            line-height: 1.8;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .reviewer-avatar {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--neon), #0ea5e9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-head);
+            font-size: 18px;
+            color: #020508;
+        }
+
+        .reviewer-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .reviewer-date {
+            font-size: 11px;
+            color: #5a88a0;
+        }
+
+        /* ─── LOCATION ─── */
+        .location-inner {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .location-info .section-label {
+            justify-content: flex-start;
+        }
+
+        .location-info .section-title {
+            text-align: left;
+            margin-bottom: 24px;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding: 20px;
+            background: #00d4ff08;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: .3s;
+        }
+
+        .info-item:hover {
+            border-color: var(--neon);
+        }
+
+        .info-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--neon), #0ea5e9);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .info-label {
+            font-size: 11px;
+            color: #5a88a0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 15px;
+            color: #e0f4ff;
+            font-weight: 600;
+        }
+
+        .location-btns {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+
+        .map-wrap {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 0 40px #00d4ff15;
+        }
+
+        .map-wrap iframe {
+            display: block;
+        }
+
+        /* ─── CONTACT ─── */
+        .contact-section {
+            background: #030a10;
+        }
+
+        .contact-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            background: #060d14;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 18px;
+            color: #e0f4ff;
+            font-family: var(--font-body);
+            font-size: 14px;
+            margin-bottom: 16px;
+            transition: .3s;
+            outline: none;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--neon);
+            box-shadow: 0 0 0 3px #00d4ff15;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-left .section-label {
+            justify-content: flex-start;
+        }
+
+        .contact-left .section-title {
+            text-align: left;
+            margin-bottom: 16px;
+        }
+
+        .contact-left p {
+            color: #7db8d0;
+            line-height: 1.8;
+            margin-bottom: 28px;
+            font-size: 15px;
+        }
+
+        /* ─── CTA STRIP ─── */
+        .cta-strip {
+            padding: 80px 8%;
+            background: linear-gradient(90deg, #020508, #041020, #020508);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-strip::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 100% at 50% 50%, #00d4ff0a, transparent);
+        }
+
+        .cta-strip h2 {
+            font-family: var(--font-head);
+            font-size: clamp(32px, 6vw, 60px);
+            color: #fff;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-strip h2 span {
+            color: var(--neon);
+            text-shadow: var(--glow);
+        }
+
+        .cta-strip p {
+            color: #7db8d0;
+            font-size: 16px;
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: #000;
+            padding: 50px 8% 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand .logo {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            color: #5a88a0;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-head);
+            letter-spacing: 2px;
+            font-size: 16px;
+            color: var(--neon);
+            margin-bottom: 16px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #5a88a0;
+            text-decoration: none;
+            font-size: 13px;
+            margin-bottom: 8px;
+            transition: .2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--neon);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-bottom p {
+            color: #3a6a80;
+            font-size: 13px;
+        }
+
+        .footer-bottom span {
+            color: var(--neon);
+        }
+
+        /* ─── FLOATING BUTTONS ─── */
+        .float-btns {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .float-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            text-decoration: none;
+            transition: .3s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .5);
+        }
+
+        .float-wa {
+            background: #25D366;
+            box-shadow: 0 4px 20px #25D36644;
+        }
+
+        .float-wa:hover {
+            transform: scale(1.15);
+            box-shadow: 0 4px 30px #25D36688;
+        }
+
+        .float-order {
+            background: var(--neon);
+            box-shadow: 0 4px 20px #00d4ff44;
+        }
+
+        .float-order:hover {
+            transform: scale(1.15);
+            box-shadow: var(--glow);
+        }
+
+        /* ─── ANIMATIONS ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media(max-width:900px) {
+            header {
+                padding: 16px 24px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            section {
+                padding: 70px 5%;
+            }
+
+            .about-inner,
+            .location-inner,
+            .contact-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-masonry {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-item:nth-child(1),
+            .gallery-item:nth-child(4) {
+                grid-column: auto;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:600px) {
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .gallery-masonry {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
+    <!-- HEADER -->
+    <header>
+        <div class="logo">APPU <span>CHAT'S</span></div>
+        <nav>
+            <a href="#menu">Menu</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#about">About</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#location">Location</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
 
-<h2>Appu Chat Center</h2>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="orb orb1"></div>
+            <div class="orb orb2"></div>
+            <div class="orb orb3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">🌶 Est. Kalaburagi • Since 2015</div>
+            <h1>Best Chaat<span>In Kalaburagi</span></h1>
+            <p class="hero-sub">Fresh · Spicy · Authentic Street Food</p>
+            <div class="hero-btns">
+                <a class="btn-primary" href="#menu">🍽 View Menu</a>
+                <a class="btn-whatsapp" href="https://wa.me/918073276645" target="_blank">💬 WhatsApp Order</a>
+                <a class="btn-secondary" href="https://maps.app.goo.gl/4j8XYqXZhu1Fa5MLA" target="_blank">📍 Get
+                    Directions</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
 
-<nav>
+    <!-- STATS -->
+    <div class="stats">
+        <div class="reveal">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Years Serving</div>
+        </div>
+        <div class="reveal">
+            <div class="stat-num">15+</div>
+            <div class="stat-label">Menu Items</div>
+        </div>
+        <div class="reveal">
+            <div class="stat-num">500+</div>
+            <div class="stat-label">Happy Customers Daily</div>
+        </div>
+        <div class="reveal">
+            <div class="stat-num">⭐4.8</div>
+            <div class="stat-label">Google Rating</div>
+        </div>
+    </div>
 
-<a href="#">Home</a>
-<a href="#menu">Menu</a>
-<a href="#about">About</a>
-<a href="#contact">Contact</a>
+    <!-- MENU -->
+    <section id="menu" class="reveal">
+        <div class="section-label">Our Specialties</div>
+        <h2 class="section-title">Popular <span>Menu</span></h2>
 
-</nav>
+        <div class="menu-grid">
 
-</header>
+            <div class="menu-card reveal">
+                <img class="menu-card-img" src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80"
+                    alt="Pani Puri">
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Pani Puri</div>
+                    <div class="menu-card-desc">Crispy puris filled with spicy tangy water, masala & sev. Kalaburagi's
+                        favourite!</div>
+                    <div class="menu-card-footer">
+                        <div class="menu-card-price">₹30</div>
+                        <div class="menu-tag">⭐ Bestseller</div>
+                    </div>
+                    <a class="menu-order-btn" href="https://wa.me/918073276645?text=I want to order Pani Puri"
+                        target="_blank">Order Now →</a>
+                </div>
+            </div>
 
+            <div class="menu-card reveal">
+                <img class="menu-card-img" src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500&q=80"
+                    alt="Bhel Puri">
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Bhel Puri</div>
+                    <div class="menu-card-desc">Puffed rice, onions, tomatoes, chutneys & sev tossed to perfection.
+                    </div>
+                    <div class="menu-card-footer">
+                        <div class="menu-card-price">₹40</div>
+                        <div class="menu-tag">🔥 Spicy</div>
+                    </div>
+                    <a class="menu-order-btn" href="https://wa.me/918073276645?text=I want to order Bhel Puri"
+                        target="_blank">Order Now →</a>
+                </div>
+            </div>
 
-<section class="hero">
+            <div class="menu-card reveal">
+                <img class="menu-card-img" src="https://images.unsplash.com/photo-1604908554027-6a76e9e6a832?w=500&q=80"
+                    alt="Samosa Chaat">
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Samosa Chaat</div>
+                    <div class="menu-card-desc">Crushed samosa loaded with chole, chutneys, yogurt & sev.</div>
+                    <div class="menu-card-footer">
+                        <div class="menu-card-price">₹35</div>
+                        <div class="menu-tag">❤️ Fan Fav</div>
+                    </div>
+                    <a class="menu-order-btn" href="https://wa.me/918073276645?text=I want to order Samosa Chaat"
+                        target="_blank">Order Now →</a>
+                </div>
+            </div>
 
-<h1>Best Chat in Kalaburgi</h1>
+            <div class="menu-card reveal">
+                <img class="menu-card-img" src="https://images.unsplash.com/photo-1589308078054-832ad7f7f4c4?w=500&q=80"
+                    alt="Dahi Puri">
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Dahi Puri</div>
+                    <div class="menu-card-desc">Cool dahi, tamarind chutney & masala in crispy puris — refreshing!</div>
+                    <div class="menu-card-footer">
+                        <div class="menu-card-price">₹40</div>
+                        <div class="menu-tag">🥛 Creamy</div>
+                    </div>
+                    <a class="menu-order-btn" href="https://wa.me/918073276645?text=I want to order Dahi Puri"
+                        target="_blank">Order Now →</a>
+                </div>
+            </div>
 
-<p>Fresh • Spicy • Delicious Street Food</p>
+            <div class="menu-card reveal">
+                <img class="menu-card-img" src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=500&q=80"
+                    alt="Sev Puri">
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Sev Puri</div>
+                    <div class="menu-card-desc">Flat puris topped with potato, onion, chutneys & crispy sev.</div>
+                    <div class="menu-card-footer">
+                        <div class="menu-card-price">₹30</div>
+                        <div class="menu-tag">🥜 Crunchy</div>
+                    </div>
+                    <a class="menu-order-btn" href="https://wa.me/918073276645?text=I want to order Sev Puri"
+                        target="_blank">Order Now →</a>
+                </div>
+            </div>
 
-<a class="btn"
-href="https://maps.app.goo.gl/SDMgecme9bzmXDoV8"
-target="_blank">
-📍 Get Directions
-</a>
+            <div class="menu-card reveal">
+                <img class="menu-card-img" src="https://images.unsplash.com/photo-1596797038530-2c107229654b?w=500&q=80"
+                    alt="Masala Puri">
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Masala Puri</div>
+                    <div class="menu-card-desc">Spicy masala peas poured over crushed puris — Karnataka's own chaat!
+                    </div>
+                    <div class="menu-card-footer">
+                        <div class="menu-card-price">₹40</div>
+                        <div class="menu-tag">🌶 Local Hit</div>
+                    </div>
+                    <a class="menu-order-btn" href="https://wa.me/918073276645?text=I want to order Masala Puri"
+                        target="_blank">Order Now →</a>
+                </div>
+            </div>
 
-</section>
+        </div>
+    </section>
 
+    <!-- GALLERY -->
+    <section id="gallery" class="gallery-section reveal">
+        <div class="section-label">Visual Feast</div>
+        <h2 class="section-title">Food <span>Gallery</span></h2>
 
-<section id="menu" class="menu">
+        <div class="gallery-masonry">
 
-<h2>Popular Items</h2>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80" alt="Pani Puri">
+                <div class="gallery-overlay"><span>Pani Puri</span></div>
+            </div>
 
-<div class="menu-container">
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1604908176997-43118a3fbc70?w=500&q=80" alt="Chaat">
+                <div class="gallery-overlay"><span>Chaat Platter</span></div>
+            </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1601050690597-df0568f70950">
-<h3>Pani Puri</h3>
-<p>₹30</p>
-</div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=500&q=80" alt="Dahi Puri">
+                <div class="gallery-overlay"><span>Dahi Puri</span></div>
+            </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7">
-<h3>Bhel Puri</h3>
-<p>₹40</p>
-</div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=800&q=80" alt="Sev Puri">
+                <div class="gallery-overlay"><span>Sev Puri</span></div>
+            </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1604908554027-6a76e9e6a832">
-<h3>Samosa Chat</h3>
-<p>₹35</p>
-</div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?w=500&q=80" alt="Masala Puri">
+                <div class="gallery-overlay"><span>Masala Puri</span></div>
+            </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1589308078054-832ad7f7f4c4">
-<h3>Dahi Puri</h3>
-<p>₹40</p>
-</div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1589308078054-832ad7f7f4c4?w=500&q=80" alt="Bhel Puri">
+                <div class="gallery-overlay"><span>Bhel Puri</span></div>
+            </div>
 
-</div>
+        </div>
+    </section>
 
-</section>
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+        <div class="about-inner">
+            <div class="about-img-wrap reveal">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80"
+                    alt="About Appu Chat's Center">
+            </div>
+            <div class="about-text">
+                <div class="section-label">Our Story</div>
+                <h2 class="section-title">About <span>Appu Chat's</span></h2>
+                <p>Welcome to <strong>Appu Chat's Center</strong> — Kalaburagi's most loved street food destination,
+                    nestled near ECI Sedam Road.</p>
+                <p>For over a decade, we've been serving fresh, spicy, and authentic Indian chaat made with hand-picked
+                    ingredients and the finest spices, bringing the true flavours of India's streets right to your
+                    plate.</p>
+                <p>Every bite tells a story of passion, tradition, and taste. Come hungry, leave happy!</p>
 
+                <div class="about-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">🌿</span> Fresh Ingredients Daily
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🧼</span> Hygienic Kitchen
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🌶</span> Authentic Spices
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">💰</span> Affordable Prices
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="about" class="about">
+    <!-- REVIEWS -->
+    <section id="reviews" class="reviews-section reveal">
+        <div class="section-label">What People Say</div>
+        <h2 class="section-title">Customer <span>Reviews</span></h2>
 
-<h2>About Us</h2>
+        <div class="reviews-grid">
 
-<p>
+            <div class="review-card reveal">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">Best pani puri in all of Kalaburagi! The spicy water is so perfectly tangy. I
+                    visit every single day after office. Highly recommended to everyone!</p>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">R</div>
+                    <div>
+                        <div class="reviewer-name">Ravi Kumar</div>
+                        <div class="reviewer-date">Google Review · 2 weeks ago</div>
+                    </div>
+                </div>
+            </div>
 
-Welcome to Appu Chat Center Kalaburgi.  
-We serve fresh, spicy and delicious street food made with authentic taste.  
-Visit us for the best pani puri, bhel puri and chaat in town.
+            <div class="review-card reveal">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">Samosa chaat is absolutely divine! Very tasty and fresh food. The chutneys are
+                    made fresh every day. Love the service and the vibe here.</p>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">P</div>
+                    <div>
+                        <div class="reviewer-name">Priya Desai</div>
+                        <div class="reviewer-date">Google Review · 1 month ago</div>
+                    </div>
+                </div>
+            </div>
 
-</p>
+            <div class="review-card reveal">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">Affordable prices with amazing taste — you just can't beat that combo. The masala
+                    puri is a must-try, genuine Karnataka style!</p>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">M</div>
+                    <div>
+                        <div class="reviewer-name">Manjunath S</div>
+                        <div class="reviewer-date">Google Review · 3 weeks ago</div>
+                    </div>
+                </div>
+            </div>
 
-</section>
+            <div class="review-card reveal">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">Brought my whole family here last Sunday. Kids loved the dahi puri and adults
+                    loved everything! Great place for the whole family.</p>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">S</div>
+                    <div>
+                        <div class="reviewer-name">Sunita Patil</div>
+                        <div class="reviewer-date">Google Review · 1 month ago</div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="review-card reveal">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">Very clean and hygienic. The bhel puri is absolutely perfect — crunchy and tangy.
+                    Will definitely come back with friends!</p>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">A</div>
+                    <div>
+                        <div class="reviewer-name">Arun Naik</div>
+                        <div class="reviewer-date">Google Review · 2 months ago</div>
+                    </div>
+                </div>
+            </div>
 
-<section id="contact" class="contact">
+            <div class="review-card reveal">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">Appu bhai's chaat is legendary in Kalaburagi. The secret is the homemade masala.
+                    Nothing beats this place on a hot evening!</p>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">K</div>
+                    <div>
+                        <div class="reviewer-name">Kavya Kulkarni</div>
+                        <div class="reviewer-date">Google Review · 3 months ago</div>
+                    </div>
+                </div>
+            </div>
 
-<h2>Contact Us</h2>
+        </div>
+    </section>
 
-<p>📍 Kalaburgi, Karnataka</p>
+    <!-- CTA STRIP -->
+    <div class="cta-strip">
+        <h2>Craving Something <span>Delicious?</span></h2>
+        <p>Order right now on WhatsApp or visit us at ECI Sedam Road, Kalaburagi</p>
+        <div class="cta-btns">
+            <a class="btn-whatsapp" href="https://wa.me/918073276645" target="_blank">💬 Order on WhatsApp</a>
+            <a class="btn-primary" href="https://maps.app.goo.gl/4j8XYqXZhu1Fa5MLA" target="_blank">📍 Get
+                Directions</a>
+        </div>
+    </div>
 
-<p>
-<a href="https://maps.app.goo.gl/SDMgecme9bzmXDoV8" target="_blank">
-Open in Google Maps
-</a>
-</p>
+    <!-- LOCATION -->
+    <section id="location" class="reveal">
+        <div class="section-label">Find Us</div>
+        <h2 class="section-title" style="text-align:center">Our <span>Location</span></h2>
 
-<p>📞 Phone: +91 80732 76645</p>
+        <div class="location-inner">
+            <div class="location-info">
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div>
+                        <div class="info-label">Address</div>
+                        <div class="info-value">Near ECI, Sedam Road, Kalaburagi, Karnataka</div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div>
+                        <div class="info-label">Phone / WhatsApp</div>
+                        <div class="info-value">+91 80732 76645</div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🕐</div>
+                    <div>
+                        <div class="info-label">Timings</div>
+                        <div class="info-value">Mon – Sun: 4:00 PM – 10:00 PM</div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🌐</div>
+                    <div>
+                        <div class="info-label">Order Online</div>
+                        <div class="info-value">Via WhatsApp — Quick & Easy</div>
+                    </div>
+                </div>
+                <div class="location-btns">
+                    <a class="btn-primary" href="https://maps.app.goo.gl/4j8XYqXZhu1Fa5MLA" target="_blank">Open in
+                        Maps</a>
+                    <a class="btn-secondary" href="https://wa.me/918073276645" target="_blank">WhatsApp Us</a>
+                </div>
+            </div>
 
-</section>
+            <div class="map-wrap">
+                <iframe src="https://maps.google.com/maps?q=Sedam+Road+Kalaburagi&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    width="100%" height="450" style="border:0" allowfullscreen loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
 
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section reveal">
+        <div class="section-label">Say Hello</div>
+        <h2 class="section-title">Contact <span>Us</span></h2>
 
-<footer>
+        <div class="contact-inner">
+            <div class="contact-left">
+                <p>Have a question, want to place a bulk order, or just want to say hi? Send us a message below or reach
+                    us directly on WhatsApp!</p>
+                <div class="info-item">
+                    <div class="info-icon">💬</div>
+                    <div>
+                        <div class="info-label">Fastest Response</div>
+                        <div class="info-value">WhatsApp: +91 80732 76645</div>
+                    </div>
+                </div>
+                <div class="info-item" style="margin-top:16px">
+                    <div class="info-icon">🎉</div>
+                    <div>
+                        <div class="info-label">Bulk Orders / Events</div>
+                        <div class="info-value">Special prices for events & catering!</div>
+                    </div>
+                </div>
+            </div>
 
-<p>© 2026 Appu Chat Center Kalaburgi</p>
+            <div class="contact-form">
+                <input type="text" placeholder="Your Name" />
+                <input type="tel" placeholder="Your Phone Number" />
+                <textarea placeholder="Your message or order details..."></textarea>
+                <a class="btn-whatsapp" style="display:block;text-align:center;padding:14px"
+                    href="https://wa.me/918073276645" target="_blank">
+                    💬 Send via WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
 
-</footer>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <span class="logo">APPU <span>CHAT'S</span></span>
+                <p>Kalaburagi's most loved street food destination. Fresh, spicy, and absolutely delicious chaat since
+                    2015.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="#menu">Menu</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#about">About</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#location">Location</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="tel:+918073276645">📞 +91 80732 76645</a>
+                <a href="https://wa.me/918073276645" target="_blank">💬 WhatsApp</a>
+                <a href="https://maps.app.goo.gl/4j8XYqXZhu1Fa5MLA" target="_blank">📍 Google Maps</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 <span>Appu Chat's Center</span> · Kalaburagi, Karnataka</p>
+            <p>Made with <span>❤️</span> for the best chaat in town</p>
+        </div>
+    </footer>
 
+    <!-- FLOATING BUTTONS -->
+    <div class="float-btns">
+        <a class="float-btn float-order" href="#menu" title="View Menu">🍽</a>
+        <a class="float-btn float-wa" href="https://wa.me/918073276645" target="_blank" title="WhatsApp Order">💬</a>
+    </div>
 
-<script>
+    <script>
+        // Intersection Observer for reveal animations
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 60);
+                }
+            });
+        }, { threshold: 0.08 });
 
-console.log("Welcome to Appu Chat Center Website")
+        reveals.forEach(el => observer.observe(el));
 
-</script>
+        // Smooth active nav
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(s => {
+                if (window.scrollY >= s.offsetTop - 100) current = s.id;
+            });
+            navLinks.forEach(a => {
+                a.style.color = a.getAttribute('href') === '#' + current ? 'var(--neon)' : '';
+            });
+        });
+
+        // Counter animation for stats
+        const statNums = document.querySelectorAll('.stat-num');
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'neonPulse 1s ease';
+                }
+            });
+        });
+
+        statNums.forEach(s => statsObserver.observe(s));
+    </script>
 </body>
+
 </html>
